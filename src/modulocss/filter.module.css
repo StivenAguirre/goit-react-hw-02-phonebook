@@ -27,3 +27,15 @@ ul {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border: 2px solid linear-gradient(to right, #ff8c00, #ff4b00);
   }
+
+
+.button-delete {
+  margin-left: 10px;
+  background-color: brown;
+  color: white;
+  border-radius: 50%;
+}
+
+.button-delete:hover {
+  transform: scale(1.1);
+}

@@ -41,7 +41,7 @@ class MyContactComponent extends Component {
 
   addNewContact = (input) => {
     this.setState((prevState) => ({
-      contacts: [...prevState.contacts, input]
+      contacts: [...prevState.contacts, { ...input, id: nanoid() }]
     }));
   };
 
@@ -56,6 +56,14 @@ class MyContactComponent extends Component {
   handleFilterChange = (e) => {
     const filterValue = e.target.value.toLowerCase();
     this.setState({ filter: filterValue });
+  };
+
+  handleDeleteContact = (contactId) => {
+    const updatedContacts = this.state.contacts.filter(
+      (contact) => contact.id !== contactId
+    );
+
+    this.setState({ contacts: updatedContacts });
   };
 
   render() {
@@ -73,7 +81,7 @@ class MyContactComponent extends Component {
             handleSubmit={this.handleSubmit}
             />
             <AlertContact name={name} contacts={contacts} />
-            <Filter contacts={contacts} filter={filter} handleFilterChange={this.handleFilterChange} />
+            <Filter contacts={contacts} filter={filter} handleFilterChange={this.handleFilterChange} handleDeleteContact={this.handleDeleteContact} />
         </div>
       </div>
     );

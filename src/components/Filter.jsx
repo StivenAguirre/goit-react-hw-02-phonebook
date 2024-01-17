@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../modulocss/filter.module.css";
 
-const Filter = ({ contacts, filter, handleFilterChange }) => {
+const Filter = ({ contacts, filter, handleFilterChange, handleDeleteContact }) => {
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter)
   );
@@ -19,10 +19,17 @@ const Filter = ({ contacts, filter, handleFilterChange }) => {
           onChange={handleFilterChange}
         />
         <ul>
-          {filteredContacts.map((contact, index) => (
-            <li key={index}>
+          {filteredContacts.map((contact) => (
+            <li key={contact.id}>
               {" "}
-              {contact.name}: {contact.number}{" "}
+              {contact.name}: {contact.number}
+              <button
+                className={styles["button-delete"]}
+                type="button"
+                onClick={() => handleDeleteContact(contact.id)}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
